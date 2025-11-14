@@ -43,14 +43,14 @@ public class ProblemReport {
 
     @NotBlank(message = "La problemática es obligatoria")
     @Column(name = "problem_type", nullable = false)
-    private String problemType;  // Podrías cambiar a un enum si tienes tipos fijos
+    private String problemType;
 
     @NotBlank(message = "La descripción es obligatoria")
     @Size(max = 1000, message = "La descripción no puede exceder 1000 caracteres")
     @Column(name = "description", nullable = false, length = 1000)
     private String description;
 
-    // Lista de fotos como Blobs (inspirado en Foto, pero sin entidad separada)
+    // Lista de fotos como Blobs
     @ElementCollection
     @CollectionTable(name = "problem_report_photos", joinColumns = @JoinColumn(name = "problem_report_id"))
     @Column(name = "photo_blob", columnDefinition = "LONGBLOB")  // Para almacenar Blobs grandes

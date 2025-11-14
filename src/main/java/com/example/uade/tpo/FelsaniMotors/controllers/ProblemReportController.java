@@ -25,7 +25,7 @@ import java.util.Optional;
 public class ProblemReportController {
 
     private final ProblemReportService service;
-    private final ProblemReportRepository repository;  // Agregado para acceder directamente a la entidad en los GET
+    private final ProblemReportRepository repository;
 
     // POST para crear reporte (ya existente)
     @PostMapping(consumes = {"multipart/form-data"})
@@ -81,7 +81,7 @@ public class ProblemReportController {
         Blob photoBlob = reportOpt.get().getPhotos().get(index);
         byte[] photoBytes = photoBlob.getBytes(1, (int) photoBlob.length());  // Convertir Blob a byte[]
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.IMAGE_JPEG);  // Ajusta si tus fotos no son JPEG (e.g., PNG)
+        headers.setContentType(MediaType.IMAGE_JPEG);  // Ajusta si las fotos no son JPEG
         return ResponseEntity.ok().headers(headers).body(photoBytes);
     }
 }
